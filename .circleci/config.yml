@@ -105,7 +105,8 @@ jobs:
              # Your code here
              cd backend
              cat .env
-             sudo npm run build
+             npm install
+             npm run build
       - persist_to_workspace:
           root: .
           paths:
