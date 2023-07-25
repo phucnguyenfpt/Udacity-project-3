@@ -486,11 +486,13 @@ workflows:
       # - scan-frontend:
       #     requires: [build-frontend]
       - deploy-infrastructure:
-          # requires:
+          requires:
           #   - "test-frontend"
           #   - "scan-frontend"
           #   - "test-backend"
           #   - "scan-backend"
+            - "build-backend"
+            - "build-frontend"
           filters:
             branches:
               only: 
