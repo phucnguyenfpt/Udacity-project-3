@@ -222,9 +222,9 @@ jobs:
           root: .
           paths:
             - .
-      # - destroy-environment:
-      #     id: ${CIRCLE_WORKFLOW_ID:0:7}
-      #     when: on_fail    
+      - destroy-environment:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
+          when: on_fail    
 
   configure-infrastructure:
     docker:
