@@ -36,7 +36,7 @@ export class ConfigService {
   private validateInput(envConfig): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       TYPEORM_CONNECTION: Joi.string().default('postgres'),
-      VERSION: Joi.string().default('local'),
+      VERSION: Joi.string().default('1.0.0'),
       NODE_ENV: Joi.string()
         .valid('local', 'development', 'production', 'test', 'provision')
         .default('local'),
