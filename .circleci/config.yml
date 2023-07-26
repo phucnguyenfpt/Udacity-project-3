@@ -477,22 +477,20 @@ workflows:
       - build-frontend:
           requires:
             - install-frontend-dependencies
-      # - test-frontend:
-      #     requires: [build-frontend]
-      # - test-backend:
-      #     requires: [build-backend]
-      # - scan-backend:
-      #     requires: [build-backend]
-      # - scan-frontend:
-      #     requires: [build-frontend]
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
+      - scan-backend:
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
       - deploy-infrastructure:
           requires:
-            # - "test-frontend"
-            # - "scan-frontend"
-            # - "test-backend"
-            # - "scan-backend"
-            - "build-backend"
-            - "build-frontend"
+            - "test-frontend"
+            - "scan-frontend"
+            - "test-backend"
+            - "scan-backend"
           filters:
             branches:
               only: 
