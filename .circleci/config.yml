@@ -485,16 +485,16 @@ workflows:
           requires: [build-backend]
       - scan-frontend:
           requires: [build-frontend]
-      - deploy-infrastructure:
-          requires:
-            - "test-frontend"
-            - "scan-frontend"
-            - "test-backend"
-            - "scan-backend"
-          filters:
-            branches:
-              only: 
-                - develop
+      # - deploy-infrastructure:
+      #     requires:
+      #       - "test-frontend"
+      #       - "scan-frontend"
+      #       - "test-backend"
+      #       - "scan-backend"
+      #     filters:
+      #       branches:
+      #         only: 
+      #           - develop
       # - configure-infrastructure:
       #     requires: [deploy-infrastructure]
       # - run-migrations:
