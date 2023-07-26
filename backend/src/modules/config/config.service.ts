@@ -4,6 +4,8 @@ import { AboutInfo } from './about.interface';
 import { Product } from '../../modules/domain/orders/entities/product.entity';
 import { Order } from '../../modules/domain/orders/entities/order.entity';
 import { Employee } from '../domain/employees/entities/employee.entity';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export interface EnvConfig {
   VERSION: string;
@@ -67,7 +69,7 @@ export class ConfigService {
 
   get about(): AboutInfo {
     return {
-      version: process.env.npm_package_version,
+      version: '1.0.0',
       environment: this.envConfig.NODE_ENV,
     };
   }
@@ -103,8 +105,8 @@ export class ConfigService {
       username: this.envConfig.TYPEORM_USERNAME,
       password: this.envConfig.TYPEORM_PASSWORD,
       database: this.envConfig.TYPEORM_DATABASE,
-      entities: [this.envConfig.TYPEORM_ENTITIES],
-      // entities: [Product, Order, Employee],
+      // entities: [this.envConfig.TYPEORM_ENTITIES],
+      entities: [Product, Order, Employee],
       logging: this.envConfig.TYPEORM_LOGGING === 'true',
       extra: { max: 4, min: 1 },
       synchronize: false,
