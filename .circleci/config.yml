@@ -38,11 +38,7 @@ commands:
             SUCCESS=$(curl https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/migration_<< parameters.id >>)
             if(( $SUCCESS==1 )); 
             then
-              # cd ~/project/backend
-              # npm install
-              # npm run migrations:revert
-              pwd
-              cd ~/project
+              echo 'success'
             fi
           when: << parameters.when >>
             
@@ -389,7 +385,7 @@ jobs:
             URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3.amazonaws.com/index.html"
             if curl -s ${URL} | grep "Welcome"
             then
-              return 1
+              return 0
             else
               return 1
             fi
