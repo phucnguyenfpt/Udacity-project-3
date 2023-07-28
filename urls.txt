@@ -1,4 +1,4 @@
 Public Url to GitHub repository (not private) [URL01]
   https://github.com/phucnguyenfpt/Udacity-project-3
-Public URL for your S3 Bucket
-  https://udapeople-6ace2fe.s3.amazonaws.com/index.html#/employees
+Public URL for your S3 Bucket [URL02]
+  http://daxbem7f8bhri.cloudfront.net/#/employees
