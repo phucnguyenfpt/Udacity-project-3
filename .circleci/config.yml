@@ -40,7 +40,7 @@ commands:
             then
               cd ~/project/backend
               npm install
-              npm run migrations:revert
+              # npm run migrations:revert
             fi
           when: << parameters.when >>
             
