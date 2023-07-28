@@ -35,7 +35,7 @@ commands:
           # Add when this will run
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS=$(curl https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/migration_<< parameters.id >>)
+            SUCCESS=$(curl https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/migration_<< parameters.id >>)
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
@@ -217,7 +217,7 @@ jobs:
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --output text)
 
-            curl -H "Content-Type: text/plain" https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/BACKEND_URL -d "http://$BACKEND_IP:3030"
+            curl -H "Content-Type: text/plain" https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/BACKEND_URL -d "http://$BACKEND_IP:3030"
       - persist_to_workspace:
           root: .
           paths:
@@ -281,9 +281,9 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl -k https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+              curl -k https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
             # else
-            #   curl -k https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0'
+            #   curl -k https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0'
             fi
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -311,7 +311,7 @@ jobs:
           working_directory: ./frontend
           command: |
             # your code here
-            export API_URL=$(curl -k https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/BACKEND_URL)
+            export API_URL=$(curl -k https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/BACKEND_URL)
             echo "${API_URL}"
             npm run build
       - run:
@@ -378,7 +378,7 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
-            export BACKEND_URL=$(curl https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/BACKEND_URL)
+            export BACKEND_URL=$(curl https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/BACKEND_URL)
             echo "${BACKEND_URL}"
       - run:
           name: Frontend smoke test.
@@ -419,7 +419,7 @@ jobs:
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
             echo $WorkflowID
-            curl -H "Content-Type: text/plain" https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/WorkflowID -d "$WorkflowID"
+            curl -H "Content-Type: text/plain" https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/WorkflowID -d "$WorkflowID"
       - run:
           name: Update cloudfront distribution
           working_directory: ./.circleci/files
@@ -443,7 +443,7 @@ jobs:
           name: Get old stack workflow id
           command: |
             # your code here
-            export OldWorkflowID=$(curl https://kvdb.io/SfgjKAYjguGwaQHBjZakKC/WorkflowID)
+            export OldWorkflowID=$(curl https://kvdb.io/PSwvWL3WV9YmpiRgjLHgbJ/WorkflowID)
             CurrentWorkflowID=${CIRCLE_WORKFLOW_ID:0:7}
             echo $OldWorkflowID
             echo $CurrentWorkflowID
