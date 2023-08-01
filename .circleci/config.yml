@@ -38,8 +38,7 @@ commands:
             SUCCESS=$(curl https://kvdb.io/BApwaSMmaEaih3JanaSj6T/migration_<< parameters.id >>)
             if(( $SUCCESS==1 )); 
             then
-              ls .
-              cd ~/project/backend
+              cd backend
               npm install
               npm run migration:revert
             fi
