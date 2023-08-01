@@ -418,7 +418,7 @@ jobs:
             WorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
-            echo OldWorkflowID: "${WorkflowID}"
+            echo "${WorkflowID}"
             curl -H "Content-Type: text/plain" https://kvdb.io/BApwaSMmaEaih3JanaSj6T/WorkflowID -d "$WorkflowID"
       - run:
           name: Update cloudfront distribution
@@ -456,6 +456,8 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
+            echo $CurrentWorkflowID
+            echo $OldWorkflowID
             if [[ "$CurrentWorkflowID" != "$OldWorkflowID" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
