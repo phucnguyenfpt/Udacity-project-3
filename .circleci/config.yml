@@ -456,6 +456,8 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
+            export OldWorkflowID=$(curl https://kvdb.io/BApwaSMmaEaih3JanaSj6T/WorkflowID)
+            CurrentWorkflowID=${CIRCLE_WORKFLOW_ID:0:7}
             echo $CurrentWorkflowID
             echo $OldWorkflowID
             if [[ "$CurrentWorkflowID" != "$OldWorkflowID" ]]
